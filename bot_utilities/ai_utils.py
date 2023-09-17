@@ -16,8 +16,8 @@ load_dotenv()
 current_language = load_current_language()
 internet_access = config['INTERNET_ACCESS']
 
-openai.api_key = os.getenv('CHIMERA_GPT_KEY')
-openai.api_base = "https://api.naga.ac/v1"
+openai.api_key = os.getenv('NOVA_AI_KEY')
+openai.api_base = "https://api.nova-oss.com/v1/"
 def sdxl(prompt):
     response = openai.Image.create(
     model="sdxl",
