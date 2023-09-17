@@ -18,14 +18,14 @@ internet_access = config['INTERNET_ACCESS']
 
 openai.api_key = os.getenv('NOVA_AI_KEY')
 openai.api_base = "https://api.nova-oss.com/v1/"
-def sdxl(prompt):
-    response = openai.Image.create(
-    model="sdxl",
-    prompt=prompt,
-    n=1,  # images count
-    size="1024x1024"
-)
-    return response['data'][0]["url"]
+#def sdxl(prompt):
+  #  response = openai.Image.create(
+  #  model="sdxl",
+   # prompt=prompt,
+  #  n=1,  # images count
+   # size="1024x1024"
+#)
+ #   return response['data'][0]["url"]
 
 async def search(prompt):
     """
