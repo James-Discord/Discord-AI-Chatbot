@@ -61,7 +61,7 @@ def fetch_chat_models():
         'Content-Type': 'application/json'
     }
 
-    response = requests.get('https://api.naga.ac/v1/models', headers=headers)
+    response = requests.get('https://api.nova-oss.com/v1/models', headers=headers)
     if response.status_code == 200:
         ModelsData = response.json()
         for model in ModelsData.get('data'):
@@ -359,41 +359,41 @@ async def imagine(ctx, prompt: str, model: app_commands.Choice[str], sampler: ap
     sent_message = await ctx.send(embed=embed, file=img_file)
 
 
-@bot.hybrid_command(name="imagine-dalle", description="Create images using DALL-E")
-@commands.guild_only()
-@app_commands.choices(model=[
-     app_commands.Choice(name='SDXL', value='sdxl'),
-     app_commands.Choice(name='Kandinsky 2.2', value='kandinsky-2.2'),
-     app_commands.Choice(name='Kandinsky 2', value='kandinsky-2'),
-     app_commands.Choice(name='Dall-E', value='dall-e'),
-     app_commands.Choice(name='Stable Diffusion 2.1', value='stable-diffusion-2.1'),
-     app_commands.Choice(name='Stable Diffusion 1.5', value='stable-diffusion-1.5'),
-     app_commands.Choice(name='Deepfloyd', value='deepfloyd-if'),
-     app_commands.Choice(name='Material Diffusion', value='material-diffusion')
-])
-@app_commands.choices(size=[
-     app_commands.Choice(name='🔳 Small', value='256x256'),
-     app_commands.Choice(name='🔳 Medium', value='512x512'),
-     app_commands.Choice(name='🔳 Large', value='1024x1024')
-])
-@app_commands.describe(
-     prompt="Write a amazing prompt for a image",
-     size="Choose the size of the image"
-)
-async def imagine_dalle(ctx, prompt, model: app_commands.Choice[str], size: app_commands.Choice[str], num_images : int = 1):
-    await ctx.defer()
-    model = model.value
-    size = size.value
-    if num_images > 4:
-        num_images = 4
-    imagefileobjs = await dall_e_gen(model, prompt, size, num_images)
-    await ctx.send(f'🎨 Generated Image by {ctx.author.name}')
-    for imagefileobj in imagefileobjs:
-        file = discord.File(imagefileobj, filename="image.png", spoiler=True, description=prompt)
-        sent_message =  await ctx.send(file=file)
-        reactions = ["⬆️", "⬇️"]
-        for reaction in reactions:
-            await sent_message.add_reaction(reaction)
+#@bot.hybrid_command(name="imagine-dalle", description="Create images using DALL-E")
+#@commands.guild_only()
+#@app_commands.choices(model=[
+#     app_commands.Choice(name='SDXL', value='sdxl'),
+#     app_commands.Choice(name='Kandinsky 2.2', value='kandinsky-2.2'),
+#     app_commands.Choice(name='Kandinsky 2', value='kandinsky-2'),
+#     app_commands.Choice(name='Dall-E', value='dall-e'),
+#     app_commands.Choice(name='Stable Diffusion 2.1', value='stable-diffusion-2.1'),
+#     app_commands.Choice(name='Stable Diffusion 1.5', value='stable-diffusion-1.5'),
+#     app_commands.Choice(name='Deepfloyd', value='deepfloyd-if'),
+#     app_commands.Choice(name='Material Diffusion', value='material-diffusion')
+#])
+#@app_commands.choices(size=[
+#     app_commands.Choice(name='🔳 Small', value='256x256'),
+#     app_commands.Choice(name='🔳 Medium', value='512x512'),
+ #    app_commands.Choice(name='🔳 Large', value='1024x1024')
+#])
+# @app_commands.describe(
+ #    prompt="Write a amazing prompt for a image",
+ #    size="Choose the size of the image"
+# )
+#async def imagine_dalle(ctx, prompt, model: app_commands.Choice[str], size: app_commands.Choice[str], num_images : int = 1):
+ #   await ctx.defer()
+ #   model = model.value
+ #   size = size.value
+ #   if num_images > 4:
+ #       num_images = 4
+ #   imagefileobjs = await dall_e_gen(model, prompt, size, num_images)
+ #   await ctx.send(f'🎨 Generated Image by {ctx.author.name}')
+  #  for imagefileobj in imagefileobjs:
+  #      file = discord.File(imagefileobj, filename="image.png", spoiler=True, description=prompt)
+  #      sent_message =  await ctx.send(file=file)
+  #      reactions = ["⬆️", "⬇️"]
+  #      for reaction in reactions:
+          #  await sent_message.add_reaction(reaction)
 
     
 @commands.guild_only()
