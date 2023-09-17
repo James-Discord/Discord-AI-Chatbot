@@ -52,7 +52,7 @@ current_language = load_current_language()
 instruction = {}
 load_instructions(instruction)
 
-CHIMERA_GPT_KEY = os.getenv('CHIMERA_GPT_KEY')
+CHIMERA_GPT_KEY = os.getenv('GPT_KEY')
 
 def fetch_chat_models():
     models = []
