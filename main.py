@@ -52,12 +52,12 @@ current_language = load_current_language()
 instruction = {}
 load_instructions(instruction)
 
-CHIMERA_GPT_KEY = os.getenv('GPT_KEY')
+NOVA_AI_KEY = os.getenv('NOVA_AI_KEY')
 
 def fetch_chat_models():
     models = []
     headers = {
-        'Authorization': f'Bearer {CHIMERA_GPT_KEY}',
+        'Authorization': f'Bearer {NOVA_AI_KEY}',
         'Content-Type': 'application/json'
     }
 
